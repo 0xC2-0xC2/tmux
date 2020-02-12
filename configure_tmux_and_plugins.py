@@ -1,15 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # by an4kein
 
 import os
 from os import path
 
-os.system('sudo apt install python-pip -y')
-package = "wget"
-try:
-    import wget
-except:
-    os.system("sudo pip install " + package)
+
+url = 'https://raw.githubusercontent.com/an4kein/tmux/master/.tmux.conf'
+tmux_plugins = 'https://github.com/tmux-plugins/tmux-logging.git'
 
 def main():
     if  path.isfile('.tmux.conf') == True:
@@ -18,10 +15,10 @@ def main():
         print("Download .tmux.conf and TMUX-PLUGINS")
         if path.isdir('/opt/tmux-plugins/') == True:
             print("Exist plugins into /opt/ download only .tmux.conf")
-            os.system('sudo wget https://raw.githubusercontent.com/an4kein/tmux/master/.tmux.conf')
+            os.system((f'sudo wget{url}'))
         elif path.isdir('/opt/tmux-plugins') == False:
-            os.system('sudo git clone https://github.com/tmux-plugins/tmux-logging.git /opt/tmux-plugins/')
-            os.system('sudo wget https://raw.githubusercontent.com/an4kein/tmux/master/.tmux.conf')
+            os.system(f'sudo git clone {tmux_plugins} /opt/tmux-plugins/')
+            os.system(f'sudo wget {url}')
 
 if __name__== "__main__":
     main()
